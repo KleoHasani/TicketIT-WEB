@@ -1,0 +1,37 @@
+:root {
+  /*Company Color goes here / primary color*/
+  --primary: #006064;
+
+  /*Subtext / shadow*/
+  --secondary: #616161;
+
+  /*Page background White/Balck/Darkblue/Grey*/
+  --background: #efe5fd;
+
+  /*Text on top of primary*/
+  --onPrimary: #ffffff;
+
+  /*Text on top of secondary*/
+  --onSecondary: #cfd8dc;
+
+  /*Text on top of background*/
+  --onBackground: #000000;
+
+  /*Danger color*/
+  --danger: #d50000;
+
+  /*Warning color*/
+  --warning: #ffd740;
+
+  /*Green/Ok color*/
+  --ok: #43a047;
+
+  /*Text on danger color*/
+  --onDanger: #ffffff;
+
+  /*Text on warning color*/
+  --onWarning: #000000;
+
+  /*Text on ok color*/
+  --onOk: #ffffff;
+}
