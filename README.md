@@ -1,5 +1,5 @@
 # TicketIT-WEB
-(WEB) ReactJS frontend for TicketIT app.
+(WEB) ReactJS front-end for TicketIT app.
 
 ## Getting Started
 
