@@ -35,7 +35,7 @@ function Register(props) {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <h1 class="">REGISTER</h1>
+        <h1>REGISTER</h1>
           <input
             type="text"
             name="firstname"

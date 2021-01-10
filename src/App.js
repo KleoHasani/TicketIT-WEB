@@ -13,7 +13,7 @@ import { Account } from "./views/Account";
 function App() {
   const isAuth = useSelector((state) => state.auth);
   return (
-    <div class="app-container">
+    <div className="app-container">
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -24,7 +24,7 @@ function App() {
           </Route>
           {isAuth ? <Navigation /> : <Redirect to="/" exact />}
         </Switch>
-        <div class="view">
+        <div className="view">
           <Route path="/dashboard" exact>
             <Dashboard />
           </Route>

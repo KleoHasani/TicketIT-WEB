@@ -83,16 +83,14 @@ a:active {
 }
 
 form {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 100%;
+  height: auto;
+  max-height: 400px;
   max-width: 500px;
-  position: relative;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   border: none;
   border-radius: 0.3em;
   box-shadow: 1px 1px 10px var(--secondary);
@@ -172,8 +170,19 @@ nav > * {
 .view {
   grid-column: 2;
   height: 100%;
+  word-break: break-all;
   padding: 0em 1em;
   overflow-y: auto;
+}
+
+@media only screen and (max-width: 700px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 90%;
+    box-shadow: none;
+  }
 }
 
 @media only screen and (max-width: 455px) {
@@ -231,8 +240,10 @@ nav > * {
   }
 }
 
-@media only screen and (max-width: 386px) {
-  .input-form {
-    display: block;
+
+@media only screen and (max-height: 375px) {
+  body {
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 }

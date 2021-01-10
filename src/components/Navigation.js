@@ -41,29 +41,29 @@ function Navigation() {
         <ul>
           <li>
             <Link to="/dashboard">
-              <IoPaperPlaneOutline class="icon"/>
+              <IoPaperPlaneOutline className="icon"/>
             </Link>
           </li>
           <li>
             <Link to="/projects">
-              <IoConstructOutline class="icon" />
+              <IoConstructOutline className="icon" />
             </Link>
           </li>
           <li>
             <Link to="/teams">
-              <IoPeopleOutline class="icon" />
+              <IoPeopleOutline className="icon" />
             </Link>
           </li>
           <li>
             <Link to="/account">
-              <IoPersonOutline class="icon" />
+              <IoPersonOutline className="icon" />
             </Link>
           </li>
         </ul>
         <ul>
           <li>
             <Link to="/" onClick={handleLogout} >
-              <IoKeyOutline class="icon" />
+              <IoKeyOutline className="icon" />
             </Link>
           </li>
         </ul>
