@@ -1,5 +1,9 @@
 function Projects(props) {
-  return <p>Projects</p>;
+  return (
+    <div>
+      <p>Projects</p>
+    </div>
+  );
 }
 
 export { Projects };

@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
@@ -14,7 +13,7 @@ import { Account } from "./views/Account";
 function App() {
   const isAuth = useSelector((state) => state.auth);
   return (
-    <Fragment>
+    <div class="app-container">
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -23,27 +22,25 @@ function App() {
           <Route path="/register" exact>
             <Register />
           </Route>
-          {isAuth ? (
-          <Fragment>
-            <Navigation />
-            <Route path="/dashboard" exact>
-              <Dashboard />
-            </Route>
-            <Route path="/projects" exact>
-              <Projects />
-            </Route>
-            <Route path="/teams" exact>
-              <Teams />
-            </Route>
-            <Route path="/account" exact>
-              <Account />
-            </Route>
-          </Fragment>
-          ) : <Redirect to="/" exact />}
-          
+          {isAuth ? <Navigation /> : <Redirect to="/" exact />}
         </Switch>
+        <div class="view">
+          <Route path="/dashboard" exact>
+            <Dashboard />
+          </Route>
+          <Route path="/projects" exact>
+            < Projects />
+          </Route>
+          <Route path="/teams" exact>
+            <Teams />
+          </Route>
+          <Route path="/account" exact>
+            <Account />
+          </Route>
+        </div>
+       
       </Router>
-    </Fragment>
+    </div>
   );
 }
 

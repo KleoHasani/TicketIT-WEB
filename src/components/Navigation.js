@@ -1,17 +1,19 @@
 import { useDispatch } from "react-redux";
 import axios from "axios"
+import { Link } from "react-router-dom";
+
 import {
-  IoMenuOutline,
-  IoAlbumsOutline,
+  IoPaperPlaneOutline,
+  IoConstructOutline,
   IoPeopleOutline,
   IoPersonOutline,
   IoKeyOutline,
 } from "react-icons/io5/index";
-import { Link } from "react-router-dom";
 
 import { unauthAction } from "../store/actions/authActions";
 
-function Navigation(props) {
+
+function Navigation() {
   const dispatch = useDispatch();
 
   const handleLogout = (e) => {
@@ -35,42 +37,37 @@ function Navigation(props) {
   }
 
   return (
-    <nav className="side-nav fill primary">
-      <ul>
-        <li className="p-1">
-          <Link to="/dashboard">
-            <p>Dashboard</p>
-            <IoMenuOutline className="icon ai-sz-normal" />
-          </Link>
-        </li>
-        <li className="p-1-left p-1-right p-1-bottom">
-          <Link to="/projects">
-            <p>Projects</p>
-            <IoAlbumsOutline className="icon ai-sz-normal" />
-          </Link>
-        </li>
-        <li className="p-1-left p-1-right p-1-bottom">
-          <Link to="/teams">
-            <p>Team</p>
-            <IoPeopleOutline className="icon ai-sz-normal" />
-          </Link>
-        </li>
-        <li className="p-1-left p-1-right p-1-bottom">
-          <Link to="/account">
-            <p>Account</p>
-            <IoPersonOutline className="icon ai-sz-normal" />
-          </Link>
-        </li>
-      </ul>
-      <ul>
-        <li className="p-1">
-          <Link to="/" onClick={handleLogout} >
-            <p>Logout</p>
-            <IoKeyOutline className="icon ai-sz-normal" />
-          </Link>
-        </li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/dashboard">
+              <IoPaperPlaneOutline class="icon"/>
+            </Link>
+          </li>
+          <li>
+            <Link to="/projects">
+              <IoConstructOutline class="icon" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/teams">
+              <IoPeopleOutline class="icon" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/account">
+              <IoPersonOutline class="icon" />
+            </Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/" onClick={handleLogout} >
+              <IoKeyOutline class="icon" />
+            </Link>
+          </li>
+        </ul>
+      </nav>
   );
 }
 
