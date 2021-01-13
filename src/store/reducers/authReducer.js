@@ -1,6 +1,6 @@
 import { AUTH, UN_AUTH } from "../types/authTypes";
 
-function authReducer(state = false, action) {
+function authReducer(state = { isAuth: false, id: null }, action) {
   switch (action.type) {
     case AUTH:
       return action.payload;

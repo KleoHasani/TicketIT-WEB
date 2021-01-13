@@ -28,51 +28,22 @@ function Register(props) {
       });
   };
 
-  if (redirect) return <Redirect to="/" />;
+  if (redirect) return <Redirect to="/login" />;
 
   return (
-      <form
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <h1>REGISTER</h1>
-          <input
-            type="text"
-            name="firstname"
-            required
-            placeholder="First Name"
-          />
-          <input
-            type="text"
-            name="lastname"
-            required
-            placeholder="Last Name"
-          />
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Email"
-          />
-          <input
-            type="password"
-            name="password"
-            required
-            placeholder="Password"
-          />
-          <small>
-            <span>* </span>
-            Password must be 8 or more characters
-          </small>
-        <button
-          type="submit"
-        >
-          Register
-        </button>
-        <Link to="/" className="">
-          Already have an account? Login
-        </Link>
-      </form>
+    <form autoComplete="off" onSubmit={handleSubmit} className="form">
+      <h1>REGISTER</h1>
+      <input type="text" name="firstname" required placeholder="First Name" />
+      <input type="text" name="lastname" required placeholder="Last Name" />
+      <input type="email" name="email" required placeholder="Email" />
+      <input type="password" name="password" required placeholder="Password" />
+      <small>
+        <span>* </span>
+        Password must be 8 or more characters
+      </small>
+      <button type="submit">Register</button>
+      <Link to="/login">Already have an account? Login</Link>
+    </form>
   );
 }
 

@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 
 import axios from "axios";
 import { authAction } from "../store/actions/authActions";
+import { useState } from "react";
 
 function Login(props) {
-  const dispatch = useDispatch();
   const [redirect, setRedirect] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ function Login(props) {
             response.headers["authorization"]
           );
           sessionStorage.setItem("refresh", response.headers["x-refresh"]);
-          dispatch(authAction);
+          dispatch(authAction(response.data.data));
           setRedirect(true);
         } else alert(response.data.msg);
       })
@@ -37,39 +37,28 @@ function Login(props) {
       });
   };
 
-  if (redirect) return <Redirect to="/dashboard" />;
+  if (redirect) return <Redirect to="/projects" />;
 
   return (
-      <form
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
-        <h1>LOGIN</h1>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          placeholder="Password"
-        />
-        <button
-          type="submit"
-        >
-          Login
-        </button>
-        <Link
-          to="/register"
-        >
-          Need a new account? Register
-        </Link>
-      </form>
+    <form autoComplete="off" onSubmit={handleSubmit} className="form">
+      <h1>LOGIN</h1>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        required
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+        placeholder="Password"
+      />
+      <button type="submit">Login</button>
+      <Link to="/register">Need a new account? Register</Link>
+    </form>
   );
 }
 

@@ -55,15 +55,19 @@ button {
   border: none;
   border-radius: 3px;
   padding: 0.8em;
-  margin: 0.5em 0.5em;
   background: var(--primary);
   color: var(--onPrimary);
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 
 button:focus {
-  border: none;
   background: var(--secondary);
   color: var(--onSecondary);
+  outline: none;
 }
 
 button:active {
@@ -84,7 +88,7 @@ a:active {
   opacity: 0.8;
 }
 
-form {
+.form {
   grid-column: 2;
   display: flex;
   flex-direction: column;
@@ -93,20 +97,18 @@ form {
   max-height: 400px;
   max-width: 500px;
   border: none;
-  border-radius: 0.3em;
-  box-shadow: 1px 1px 10px var(--secondary);
   padding: 2em 1em;
   margin: 2em auto;
 }
 
-form > * {
+.form > * {
   display: flex;
   flex-direction: column;
   width: 75%;
   margin: auto auto;
 }
 
-form > h1,
+.form > h1,
 a {
   width: 100%;
   text-align: center;
@@ -115,25 +117,25 @@ a {
   -webkit-user-select: none;
 }
 
-form > input {
+.form > input {
   margin-bottom: 1em;
 }
 
-form > a {
-  margin: 1em 0.3ex;
+.form > a {
+  margin: 1em auto;
 }
 
-form > small {
+.form > small {
   color: var(--secondary);
   opacity: 0.9;
   display: inline-block;
 }
 
-form > small > span {
+.form > small > span {
   color: var(--danger);
 }
 
-form > button {
+.form > button {
   margin: 1em auto 0em auto;
 }
 
@@ -159,11 +161,40 @@ nav {
   background: var(--primary);
 }
 
-nav > * {
+nav > ul {
+  height: auto;
   margin: 0em auto;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1em;
+}
+
+header > h2 {
+  color: var(--primary);
+  text-align: left;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+}
+
+hr {
+  color: var(--primary);
+  animation: expand-out 0.4s ease-out 1;
+}
+
+@keyframes expand-out {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 
 .icon {
@@ -174,7 +205,7 @@ nav > * {
 
 .view {
   grid-column: 2;
-  height: 100%;
+  height: auto;
   word-break: break-all;
   padding: 0em 1em;
   overflow-y: auto;
@@ -182,27 +213,103 @@ nav > * {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  width: auto;
-  height: 100%;
+  grid-template-columns: repeat(4, 20em);
   grid-row-gap: 1em;
   grid-column-gap: 1em;
 }
 
-.card {
-  border: 1px solid red;
+.project-card {
+  box-shadow: 1px 1px 5px var(--secondary);
   width: auto;
   min-width: 20em;
-  height: 30em;
+  margin: 1em;
 }
 
-.card > h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.project-card > hr {
+  animation: none;
+}
+
+.project-card-header {
   text-align: center;
+  margin: 1em;
+}
+
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.project-card-body > * {
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.button-link {
+  width: auto;
+  height: 100%;
+  padding: 0.8em;
+  border-radius: 3px;
+  background: var(--primary);
+  color: var(--onPrimary);
+}
+
+.button-link:hover {
+  opacity: 0.8;
+}
+
+.button-link:focus {
+  background: var(--secondary);
+  color: var(--onSecondary);
+}
+
+.button-warning {
+  background: var(--warning);
+}
+
+.button-danger {
+  background: var(--danger);
+}
+
+.account {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 1em;
+  height: fit-content;
+}
+
+.account-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 1em;
+}
+
+.data-place {
+  text-align: right;
+  margin-right: 1em;
+  width: 100%;
+}
+
+.data-value {
+  text-align: left;
+  width: 100%;
+}
+
+.new-project {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 1em;
+}
+
+.new-project > input {
+  width: 100%;
+}
+
+.new-project > button {
+  width: 25%;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -210,10 +317,8 @@ h6 {
     grid-template-columns: repeat(3, auto);
   }
 
-  .card {
+  .project-card {
     width: auto;
-    min-width: 16em;
-    height: 35em;
   }
 }
 
@@ -222,10 +327,8 @@ h6 {
     grid-template-columns: repeat(2, auto);
   }
 
-  .card {
+  .project-card {
     width: auto;
-    min-width: 16em;
-    height: 35em;
   }
 }
 
@@ -234,10 +337,9 @@ h6 {
     grid-template-columns: repeat(2, auto);
   }
 
-  .card {
+  .project-card {
     width: auto;
     min-width: 16em;
-    height: 26em;
   }
 }
 
@@ -254,10 +356,9 @@ h6 {
     grid-template-columns: repeat(2, auto);
   }
 
-  .card {
+  .project-card {
     width: auto;
     min-width: 16em;
-    height: 22em;
   }
 }
 
@@ -265,31 +366,27 @@ h6 {
   .app-container {
     display: grid;
     grid-template-rows: auto min-content;
-    height: 100vh;
     width: 100%;
   }
 
   .view {
-    margin: 0em;
     padding: 0em;
   }
 
   nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
     grid-row: 2;
     grid-column: 2;
     width: 100%;
     height: 3.5em;
-    justify-content: space-evenly;
     background: var(--primary);
   }
 
-  nav > * {
+  nav > ul {
     display: flex;
     flex-direction: row;
-  }
-
-  nav > ul:last-child {
-    display: none;
   }
 
   nav > ul {
@@ -318,27 +415,20 @@ h6 {
     grid-template-columns: auto;
   }
 
-  .card {
+  .project-card {
     width: auto;
     min-width: 15em;
-    height: 30em;
   }
 }
 
 @media only screen and (max-width: 375px) {
-  body {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
   .card-container {
     grid-template-columns: auto;
   }
 
-  .card {
+  .project-card {
     width: auto;
     min-width: 15em;
-    height: 30em;
   }
 }
 
@@ -354,9 +444,8 @@ h6 {
     grid-template-columns: repeat(2, auto);
   }
 
-  .card {
+  .project-card {
     width: auto;
     min-width: 15em;
-    height: 25em;
   }
 }
