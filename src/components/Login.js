@@ -27,7 +27,7 @@ function Login(props) {
             response.headers["authorization"]
           );
           sessionStorage.setItem("refresh", response.headers["x-refresh"]);
-          dispatch(authAction(response.data.data));
+          dispatch(authAction);
           setRedirect(true);
         } else alert(response.data.msg);
       })

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 
 import { IoKeyOutline } from "react-icons/io5/index";
@@ -10,8 +10,6 @@ import { ViewHeader } from "../components/ViewHeader";
 function Account(props) {
   const dispatch = useDispatch();
 
-  const id = useSelector((state) => state.auth.id);
-
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +18,7 @@ function Account(props) {
     axios({
       method: "get",
       baseURL: "http://localhost:8000/api",
-      url: `/user/${id}`,
+      url: `/user/account`,
       headers: { authorization: sessionStorage.getItem("authorization") },
     })
       .then((response) => {
@@ -36,7 +34,7 @@ function Account(props) {
       });
   };
 
-  useEffect(onLoad, [firstname, lastname, email, id]);
+  useEffect(onLoad, [firstname, lastname, email]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -44,7 +42,7 @@ function Account(props) {
       axios({
         method: "delete",
         baseURL: "http://localhost:8000/api",
-        url: "/auth/logout",
+        url: "/user/logout",
         headers: { authorization: sessionStorage.getItem("authorization") },
       })
         .then((response) => {

@@ -10,15 +10,13 @@ function Card(props) {
     }`;
   };
 
-  console.log(props.key);
   return (
     <div className="project-card">
-      <div className="project-card-header">
+      <div>
         <h2>{props.data.name}</h2>
         <p>Created on: {dateParser(new Date(props.data.created))}</p>
       </div>
-      <hr />
-      <div className="project-card-body">
+      <div>
         <Link to={"/projects/" + props.data._id} className="button-link">
           View
         </Link>
