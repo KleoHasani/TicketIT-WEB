@@ -7,6 +7,8 @@ import { Tickets } from "../components/Tickets";
 
 import { Error } from "../components/Error";
 
+import { refresh } from "../helpers/refresh";
+
 function Project() {
   const { projectID } = useParams();
 
@@ -30,8 +32,10 @@ function Project() {
         }
       })
       .catch((err) => {
-        console.log(err);
-        setShowError(true);
+        if (err.toString() === "Error: Request failed with status code 401") {
+          refresh();
+          return onLoad();
+        }
       });
   };
 

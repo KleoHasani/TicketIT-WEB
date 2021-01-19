@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 function ViewHeader(props) {
   return (
     <div className="header">

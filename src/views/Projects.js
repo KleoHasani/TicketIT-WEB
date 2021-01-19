@@ -2,11 +2,13 @@ import { ViewHeader } from "../components/ViewHeader";
 import { Cards } from "../components/Cards";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { refresh } from "../helpers/refresh";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
 
   const onLoad = () => {
+    console.log("Hello");
     axios({
       method: "get",
       baseURL: "http://localhost:8000/api",
@@ -19,25 +21,27 @@ function Projects() {
         } else alert(response.data.msg);
       })
       .catch((err) => {
-        console.log(err);
-        alert("Ooops, looks like something went wrong");
+        if (err.toString() === "Error: Request failed with status code 401") {
+          const shouldRefresh = refresh();
+          if (shouldRefresh) return onLoad();
+        }
       });
   };
 
   // Load once
   useEffect(onLoad, []);
 
-  // Update renderer based on project
-
+  // Create new project
   const handleCreateNewProject = (e) => {
     e.preventDefault();
+    const name = e.target.project.value;
     axios({
       method: "post",
       baseURL: "http://localhost:8000/api",
       url: "/projects/new",
       headers: { authorization: sessionStorage.getItem("authorization") },
       data: {
-        project: e.target.project.value,
+        project: name,
       },
     })
       .then((response) => {
@@ -48,60 +52,76 @@ function Projects() {
         } else alert(response.data.msg);
       })
       .catch((err) => {
-        console.log(err);
-        alert("Ooops, looks like something went wrong");
+        if (err.toString() === "Error: Request failed with status code 401") {
+          refresh();
+          return handleCreateNewProject(e);
+        } else {
+          alert(err);
+          e.target.project.value = "";
+        }
       });
   };
 
+  // Rename project
+  const renameProject = (rename, projectID) => {
+    axios({
+      method: "patch",
+      baseURL: "http://localhost:8000/api",
+      url: `/projects/${projectID}/update/name`,
+      headers: { authorization: sessionStorage.getItem("authorization") },
+      data: {
+        project: rename,
+      },
+    })
+      .then((response) => {
+        if (response.data.desc === "PASS") {
+          projects.forEach((project) => {
+            if (project._id === projectID) project.name = rename;
+          });
+          setProjects([...projects]);
+        } else return false;
+      })
+      .catch((err) => {
+        if (err.toString() === "Error: Request failed with status code 401") {
+          refresh();
+          return renameProject(rename, projectID);
+        }
+      });
+  };
+
+  // Handle Rename project
   const handleRenameProject = (e, projectID) => {
     e.preventDefault();
     const rename = prompt("Rename to: ");
-
-    if (rename !== null)
-      axios({
-        method: "patch",
-        baseURL: "http://localhost:8000/api",
-        url: `/projects/${projectID}/update/name`,
-        headers: { authorization: sessionStorage.getItem("authorization") },
-        data: {
-          project: rename,
-        },
-      })
-        .then((response) => {
-          if (response.data.desc === "PASS") {
-            projects.forEach((project) => {
-              if (project._id === projectID) project.name = rename;
-            });
-            setProjects([...projects]);
-          } else alert(response.data.msg);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("Ooops, looks like something went wrong");
-        });
+    if (rename !== null) renameProject(rename, projectID);
     return;
   };
 
+  // Delete project
+  const deleteProject = (projectID) => {
+    axios({
+      method: "delete",
+      baseURL: "http://localhost:8000/api",
+      url: `/projects/${projectID}/delete`,
+      headers: { authorization: sessionStorage.getItem("authorization") },
+    })
+      .then((response) => {
+        if (response.data.desc === "PASS") {
+          setProjects(projects.filter((project) => project._id !== projectID));
+        } else alert(response.data.msg);
+      })
+      .catch((err) => {
+        if (err.toString() === "Error: Request failed with status code 401") {
+          refresh();
+          return deleteProject(projectID);
+        }
+      });
+  };
+
+  // Handle Delete project
   const handleDeleteProject = (e, projectID) => {
     e.preventDefault();
-    if (global.confirm("Are you sure?"))
-      axios({
-        method: "delete",
-        baseURL: "http://localhost:8000/api",
-        url: `/projects/${projectID}/delete`,
-        headers: { authorization: sessionStorage.getItem("authorization") },
-      })
-        .then((response) => {
-          if (response.data.desc === "PASS") {
-            setProjects(
-              projects.filter((project) => project._id !== projectID)
-            );
-          } else alert(response.data.msg);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("Ooops, looks like something went wrong");
-        });
+    if (global.confirm("Are you sure?")) deleteProject(projectID);
     return;
   };
 

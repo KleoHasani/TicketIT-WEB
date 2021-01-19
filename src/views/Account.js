@@ -6,6 +6,7 @@ import { IoKeyOutline } from "react-icons/io5/index";
 
 import { unauthAction } from "../store/actions/authActions";
 import { ViewHeader } from "../components/ViewHeader";
+import { refresh } from "../helpers/refresh";
 
 function Account() {
   const dispatch = useDispatch();
@@ -29,38 +30,50 @@ function Account() {
         } else alert(response.data.msg);
       })
       .catch((err) => {
-        console.log(err);
-        alert("Ooops, looks like something went wrong");
+        if (err.toString() === "Error: Request failed with status code 401") {
+          refresh();
+          return onLoad();
+        }
       });
   };
 
   useEffect(onLoad, [firstname, lastname, email]);
 
+  const logout = () => {
+    axios({
+      method: "delete",
+      baseURL: "http://localhost:8000/api",
+      url: "/user/logout",
+      headers: { authorization: sessionStorage.getItem("authorization") },
+    })
+      .then((response) => {
+        if (response.data.desc === "PASS") {
+          sessionStorage.clear();
+          dispatch(unauthAction);
+        } else alert(response.data.msg);
+      })
+      .catch((err) => {
+        if (err.toString() === "Error: Request failed with status code 401") {
+          refresh();
+          return logout();
+        }
+      });
+  };
+
   const handleLogout = (e) => {
     e.preventDefault();
-    if (global.confirm("Are you sure?"))
-      axios({
-        method: "delete",
-        baseURL: "http://localhost:8000/api",
-        url: "/user/logout",
-        headers: { authorization: sessionStorage.getItem("authorization") },
-      })
-        .then((response) => {
-          if (response.data.desc === "PASS") {
-            sessionStorage.clear();
-            dispatch(unauthAction);
-          } else alert(response.data.msg);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("Ooops, looks like something went wrong");
-        });
+    if (global.confirm("Are you sure?")) logout();
     return;
   };
 
   return (
     <div className="view">
-      <ViewHeader title="Account" />
+      <ViewHeader title="Account">
+        <div onClick={handleLogout} className="button danger">
+          <IoKeyOutline className="icon-sm" />
+          Logout
+        </div>
+      </ViewHeader>
       <div className="account">
         <div className="account-data">
           <div className="data-place">
@@ -73,10 +86,6 @@ function Account() {
             <p>{lastname}</p>
             <p>{email}</p>
           </div>
-        </div>
-
-        <div onClick={handleLogout} className="button danger">
-          <IoKeyOutline className="icon" />
         </div>
       </div>
     </div>

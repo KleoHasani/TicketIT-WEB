@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
@@ -19,6 +19,8 @@ import { Account } from "./views/Account";
 
 function App() {
   const isAuth = useSelector((state) => state.auth);
+
+  useEffect(() => {}, [isAuth]);
 
   return (
     <div className="app-container">

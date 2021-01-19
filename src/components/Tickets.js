@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { TicketList } from "./TicketList";
 
 function Tickets(props) {
-  const [tickets, setTickets] = useState([]);
-  const [inprogress, setInProgress] = useState([]);
-  const [complete, setComplete] = useState([]);
+  const [tickets /*setTickets*/] = useState([]);
+  const [inprogress /*stInProgress*/] = useState([]);
+  const [complete /*setComplete*/] = useState([]);
 
   const getTickets = () => {
     axios({
@@ -27,7 +27,7 @@ function Tickets(props) {
   };
 
   // Get tickets data on load
-  useEffect(getTickets, []);
+  useEffect(getTickets, [props.projectID]);
 
   useEffect(() => {}, [tickets, inprogress, complete]);
 

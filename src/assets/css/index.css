@@ -28,6 +28,21 @@ button {
   color: var(--onBackground);
   outline: none;
   border: none;
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  min-width: 150px;
+  height: auto;
+  min-height: 25px;
+  padding: 0.5em 0.2em;
+  margin: 0.3em 0em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 input {
@@ -165,7 +180,6 @@ a {
 .header-body {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -177,11 +191,10 @@ a {
 
 .header-title {
   color: var(--primary);
-  text-align: left;
+  width: 80%;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
-  width: 80%;
 }
 
 .header > hr {
@@ -193,6 +206,13 @@ a {
 .icon {
   width: 2em;
   height: 2em;
+  color: var(--onPrimary);
+}
+
+.icon-sm {
+  width: 1.2em;
+  height: 1.2em;
+  margin: 0em 0.5em;
   color: var(--onPrimary);
 }
 
@@ -246,12 +266,18 @@ a {
 .button {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: auto;
+  min-width: 150px;
   height: auto;
-  padding: 0.6em 0.2em;
+  min-height: 25px;
+  padding: 0.5em 0.2em;
   margin: 0.3em 0em;
   border-radius: 0.5em;
   cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 .button:hover {
@@ -305,7 +331,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
   margin: 1em;
-  height: fit-content;
+  height: auto;
 }
 
 .account-data {
