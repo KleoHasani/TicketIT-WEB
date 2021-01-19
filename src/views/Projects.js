@@ -3,7 +3,7 @@ import { Cards } from "../components/Cards";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function Projects(props) {
+function Projects() {
   const [projects, setProjects] = useState([]);
 
   const onLoad = () => {

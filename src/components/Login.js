@@ -5,7 +5,7 @@ import axios from "axios";
 import { authAction } from "../store/actions/authActions";
 import { useState } from "react";
 
-function Login(props) {
+function Login() {
   const [redirect, setRedirect] = useState(false);
   const dispatch = useDispatch();
 

@@ -1,4 +1,4 @@
-function Error(props) {
+function Error() {
   return (
     <div className="error">
       <h1>Error</h1>

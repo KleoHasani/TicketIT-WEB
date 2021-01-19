@@ -7,7 +7,7 @@ import { IoKeyOutline } from "react-icons/io5/index";
 import { unauthAction } from "../store/actions/authActions";
 import { ViewHeader } from "../components/ViewHeader";
 
-function Account(props) {
+function Account() {
   const dispatch = useDispatch();
 
   const [firstname, setFirstname] = useState("");

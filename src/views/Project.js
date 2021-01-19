@@ -7,7 +7,7 @@ import { Tickets } from "../components/Tickets";
 
 import { Error } from "../components/Error";
 
-function Project(props) {
+function Project() {
   const { projectID } = useParams();
 
   const [project, setProject] = useState([]);
