@@ -15,29 +15,30 @@ function Account() {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
 
-  const onLoad = () => {
-    axios({
-      method: "get",
-      baseURL: "http://localhost:8000/api",
-      url: `/user/account`,
-      headers: { authorization: sessionStorage.getItem("authorization") },
-    })
-      .then((response) => {
-        if (response.data.desc === "PASS") {
-          setFirstname(response.data.data.firstname);
-          setLastname(response.data.data.lastname);
-          setEmail(response.data.data.email);
-        } else alert(response.data.msg);
+  useEffect(() => {
+    const onLoad = () => {
+      axios({
+        method: "get",
+        baseURL: "http://localhost:8000/api",
+        url: `/user/account`,
+        headers: { authorization: sessionStorage.getItem("authorization") },
       })
-      .catch((err) => {
-        if (err.toString() === "Error: Request failed with status code 401") {
-          refresh();
-          return onLoad();
-        }
-      });
-  };
-
-  useEffect(onLoad, [firstname, lastname, email]);
+        .then((response) => {
+          if (response.data.desc === "PASS") {
+            setFirstname(response.data.data.firstname);
+            setLastname(response.data.data.lastname);
+            setEmail(response.data.data.email);
+          } else alert(response.data.msg);
+        })
+        .catch((err) => {
+          if (err.toString() === "Error: Request failed with status code 401") {
+            refresh();
+            return onLoad();
+          }
+        });
+    };
+    onLoad();
+  }, []);
 
   const logout = () => {
     axios({

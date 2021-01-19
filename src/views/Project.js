@@ -16,30 +16,31 @@ function Project() {
 
   const [showError, setShowError] = useState(false);
 
-  const onLoad = () => {
-    axios({
-      method: "get",
-      baseURL: "http://localhost:8000/api",
-      url: `/projects/${projectID}`,
-      headers: { authorization: sessionStorage.getItem("authorization") },
-    })
-      .then((response) => {
-        if (response.data.desc === "PASS") {
-          setProject(response.data.data);
-        } else {
-          alert(response.data.msg);
-          setShowError(true);
-        }
+  useEffect(() => {
+    const onLoad = () => {
+      axios({
+        method: "get",
+        baseURL: "http://localhost:8000/api",
+        url: `/projects/${projectID}`,
+        headers: { authorization: sessionStorage.getItem("authorization") },
       })
-      .catch((err) => {
-        if (err.toString() === "Error: Request failed with status code 401") {
-          refresh();
-          return onLoad();
-        }
-      });
-  };
-
-  useEffect(onLoad, [projectID]);
+        .then((response) => {
+          if (response.data.desc === "PASS") {
+            setProject(response.data.data);
+          } else {
+            alert(response.data.msg);
+            setShowError(true);
+          }
+        })
+        .catch((err) => {
+          if (err.toString() === "Error: Request failed with status code 401") {
+            refresh();
+            return onLoad();
+          }
+        });
+    };
+    onLoad();
+  }, [projectID]);
 
   if (showError) return <Error />;
 

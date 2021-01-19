@@ -7,29 +7,29 @@ import { refresh } from "../helpers/refresh";
 function Projects() {
   const [projects, setProjects] = useState([]);
 
-  const onLoad = () => {
-    console.log("Hello");
-    axios({
-      method: "get",
-      baseURL: "http://localhost:8000/api",
-      url: "/projects/",
-      headers: { authorization: sessionStorage.getItem("authorization") },
-    })
-      .then((response) => {
-        if (response.data.desc === "PASS") {
-          setProjects(response.data.data);
-        } else alert(response.data.msg);
-      })
-      .catch((err) => {
-        if (err.toString() === "Error: Request failed with status code 401") {
-          const shouldRefresh = refresh();
-          if (shouldRefresh) return onLoad();
-        }
-      });
-  };
-
   // Load once
-  useEffect(onLoad, []);
+  useEffect(() => {
+    const onLoad = () => {
+      axios({
+        method: "get",
+        baseURL: "http://localhost:8000/api",
+        url: "/projects/",
+        headers: { authorization: sessionStorage.getItem("authorization") },
+      })
+        .then((response) => {
+          if (response.data.desc === "PASS") {
+            setProjects(response.data.data);
+          } else alert(response.data.msg);
+        })
+        .catch((err) => {
+          if (err.toString() === "Error: Request failed with status code 401") {
+            const shouldRefresh = refresh();
+            if (shouldRefresh) return onLoad();
+          }
+        });
+    };
+    onLoad();
+  }, []);
 
   // Create new project
   const handleCreateNewProject = (e) => {
