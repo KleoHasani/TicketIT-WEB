@@ -20,8 +20,6 @@ import { Account } from "./views/Account";
 function App() {
   const isAuth = useSelector((state) => state.auth);
 
-  console.log(isAuth);
-
   return (
     <div className="app-container">
       <Router>

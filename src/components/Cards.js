@@ -2,7 +2,7 @@ import { Card } from "./Card";
 
 function Cards(props) {
   return (
-    <div className="card-container">
+    <div className="container shadow-normal">
       {props.cards.map((data, index) => (
         <Card
           key={index}

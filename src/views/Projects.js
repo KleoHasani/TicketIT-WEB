@@ -107,21 +107,25 @@ function Projects(props) {
 
   return (
     <div className="view">
-      <ViewHeader title="Projects" />
-      <form
-        className="new-project"
-        autoComplete="off"
-        onSubmit={handleCreateNewProject}
-      >
-        <input
-          type="text"
-          name="project"
-          id="project"
-          required
-          placeholder="Project Name"
-        />
-        <button>New</button>
-      </form>
+      <ViewHeader title="Projects">
+        <form
+          className="new-project"
+          autoComplete="off"
+          onSubmit={handleCreateNewProject}
+        >
+          <input
+            type="text"
+            name="project"
+            id="project"
+            required
+            placeholder="Project Name"
+          />
+          <button className="button ok" type="submit">
+            New
+          </button>
+        </form>
+      </ViewHeader>
+
       <Cards
         cards={projects}
         handleDeleteProject={handleDeleteProject}

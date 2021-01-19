@@ -75,9 +75,9 @@ function Account(props) {
           </div>
         </div>
 
-        <button onClick={handleLogout}>
+        <div onClick={handleLogout} className="button danger">
           <IoKeyOutline className="icon" />
-        </button>
+        </div>
       </div>
     </div>
   );

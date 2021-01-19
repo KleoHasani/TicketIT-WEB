@@ -11,27 +11,27 @@ function Card(props) {
   };
 
   return (
-    <div className="project-card">
-      <div>
-        <h2>{props.data.name}</h2>
+    <div className="card">
+      <div className="card-header">
+        <h3>{props.data.name}</h3>
         <p>Created on: {dateParser(new Date(props.data.created))}</p>
       </div>
-      <div>
-        <Link to={"/projects/" + props.data._id} className="button-link">
+      <div className="card-body">
+        <Link to={"/projects/" + props.data._id} className="button normal">
           View
         </Link>
-        <button
+        <div
+          className="button warning"
           onClick={(e) => props.handleRename(e, props.data._id)}
-          className="button-warning"
         >
           Rename
-        </button>
-        <button
+        </div>
+        <div
+          className="button danger"
           onClick={(e) => props.handleDelete(e, props.data._id)}
-          className="button-danger"
         >
           Delete
-        </button>
+        </div>
       </div>
     </div>
   );

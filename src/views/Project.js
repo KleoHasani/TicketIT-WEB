@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { ViewHeader } from "../components/ViewHeader";
+import { Tickets } from "../components/Tickets";
+
 import { Error } from "../components/Error";
 
 function Project(props) {
   const { projectID } = useParams();
+
   const [project, setProject] = useState([]);
 
   const [showError, setShowError] = useState(false);
@@ -38,34 +42,7 @@ function Project(props) {
   return (
     <div className="view">
       <ViewHeader title={project.name} />
-      <div className="tickets">
-        <div>
-          <h3>Tickets</h3>
-          <ul>
-            <li>List</li>
-            <li>List</li>
-            <li>List</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Assigned</h3>
-          <ul>
-            <li>List</li>
-            <li>List</li>
-            <li>List</li>
-            <li>List</li>
-            <li>List</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Complete</h3>
-          <ul>
-            <li>List</li>
-            <li>List</li>
-            <li>List</li>
-          </ul>
-        </div>
-      </div>
+      <Tickets projectID={projectID} />
     </div>
   );
 }

@@ -41,7 +41,9 @@ function Register(props) {
         <span>* </span>
         Password must be 8 or more characters
       </small>
-      <button type="submit">Register</button>
+      <button className="button normal" type="submit">
+        Register
+      </button>
       <Link to="/login">Already have an account? Login</Link>
     </form>
   );

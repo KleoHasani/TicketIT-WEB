@@ -56,7 +56,9 @@ function Login(props) {
         required
         placeholder="Password"
       />
-      <button type="submit">Login</button>
+      <button className="button normal" type="submit">
+        Login
+      </button>
       <Link to="/register">Need a new account? Register</Link>
     </form>
   );
