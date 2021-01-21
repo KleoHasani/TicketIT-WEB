@@ -72,6 +72,31 @@ input:-moz-submit-invalid {
   border-color: var(--danger);
 }
 
+textarea {
+  border: none;
+  border-bottom: 2px solid var(--primary);
+  padding: 0.5em;
+  margin: 0.5em 0.3em;
+  background: var(--background);
+  color: var(--onBackground);
+  outline: none;
+  resize: none;
+}
+
+select {
+  border: none;
+  border-bottom: 2px solid var(--primary);
+  padding: 0.5em;
+  margin: 0.5em 0.3em;
+  background: var(--background);
+  color: var(--onBackground);
+  outline: none;
+
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 a {
   color: var(--primary);
   text-emphasis: none;
@@ -397,15 +422,125 @@ a {
   font-size: 4em;
 }
 
+.ticket-item {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  cursor: default;
+}
+
+.ticket-item:hover {
+  background: var(--secondary);
+  color: var(--onSecondary);
+}
+
+.ticket-item > p {
+  width: 80% !important;
+}
+.ticket-item > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 20% !important;
+}
+
+.ticket-item > div > .button {
+  min-width: 2em !important;
+  margin: 0em !important;
+  margin-left: 0.5em !important;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  opacity: 0.95;
+}
+
+.overlay > div {
+  width: 50%;
+  height: 50%;
+  border: 1px solid var(--primary);
+  border-radius: 0.5em;
+  background: var(--secondary);
+}
+
+.overlay > div > header {
+  text-align: center;
+  padding: 1em;
+  background: var(--primary);
+  color: var(--onPrimary);
+  border-radius: 0.4em 0.4em 0em 0em;
+}
+
+.overlay > div > form {
+  margin: 1em;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay > div > form > * {
+  margin-top: 0.5em;
+}
+
+.overlay > div > form > input {
+  background: transparent;
+  color: var(--onSecondary);
+}
+
+.overlay > div > form > input:focus {
+  background: transparent;
+  color: white;
+  border-color: var(--ok);
+}
+
+.overlay > div > form > select {
+  background: transparent;
+  color: var(--onSecondary);
+}
+
+.overlay > div > form > textarea {
+  background: transparent;
+  color: var(--onSecondary);
+}
+
+.overlay > div > form > div {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1em;
+}
+
+.overlay > div > form > div > button {
+  min-width: 130px;
+}
+
 @media only screen and (max-width: 1024px) {
   .container {
     grid-template-columns: repeat(2, auto);
+  }
+
+  .overlay > div {
+    width: 60%;
   }
 }
 
 @media only screen and (max-width: 800px) {
   .container {
     grid-template-columns: auto;
+  }
+
+  .overlay > div {
+    width: 70%;
   }
 }
 
@@ -444,6 +579,15 @@ a {
     padding: 0em;
   }
 
+  .overlay {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .overlay > div {
+    width: 80%;
+  }
+
   nav {
     display: flex;
     flex-direction: row;
@@ -475,6 +619,11 @@ a {
     align-items: center;
     width: 100%;
     height: 100%;
+  }
+
+  .error {
+    grid-row: 1;
+    grid-column: 2;
   }
 
   .container {

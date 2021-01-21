@@ -1,0 +1,12 @@
+const TICKET_TYPE = {
+  TODO: 0,
+  BUG: 1,
+};
+
+const TICKET_STATUS = {
+  TICKET: 0,
+  INPROGRESS: 1,
+  COMPLETE: 2,
+};
+
+export { TICKET_TYPE, TICKET_STATUS };

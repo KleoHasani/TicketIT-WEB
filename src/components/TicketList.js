@@ -1,3 +1,5 @@
+import { TicketItem } from "./TicketItem";
+
 function TicketList(props) {
   return (
     <div className={`card shadow-${props.variant}`}>
@@ -8,7 +10,9 @@ function TicketList(props) {
         {props.data.length === 0 ? (
           <h5>{props.nodata}</h5>
         ) : (
-          props.data.map((item, index) => <li key={index}>{item}</li>)
+          props.data.map((item, index) => (
+            <TicketItem key={index} data={item} />
+          ))
         )}
       </ul>
     </div>
