@@ -46,7 +46,9 @@ function Project() {
 
   return (
     <div className="view">
-      <ViewHeader title={project.name} />
+      <ViewHeader title={project.name}>
+        <div className="button ok">New Ticket</div>
+      </ViewHeader>
       <Tickets projectID={projectID} />
     </div>
   );

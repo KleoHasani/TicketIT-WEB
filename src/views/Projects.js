@@ -1,5 +1,5 @@
 import { ViewHeader } from "../components/ViewHeader";
-import { Cards } from "../components/Cards";
+import { ProjectCards } from "../components/ProjectCards";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { refresh } from "../helpers/refresh";
@@ -141,12 +141,12 @@ function Projects() {
             placeholder="Project Name"
           />
           <button className="button ok" type="submit">
-            New
+            New Project
           </button>
         </form>
       </ViewHeader>
 
-      <Cards
+      <ProjectCards
         cards={projects}
         handleDeleteProject={handleDeleteProject}
         handleRenameProject={handleRenameProject}

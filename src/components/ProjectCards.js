@@ -1,10 +1,10 @@
-import { Card } from "./Card";
+import { ProjectCard } from "./ProjectCard";
 
-function Cards(props) {
+function ProjectCards(props) {
   return (
     <div className="container shadow-normal">
       {props.cards.map((data, index) => (
-        <Card
+        <ProjectCard
           key={index}
           data={data}
           handleDelete={props.handleDeleteProject}
@@ -15,4 +15,4 @@ function Cards(props) {
   );
 }
 
-export { Cards };
+export { ProjectCards };

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 
 import {
   IoPaperPlaneOutline,
@@ -9,23 +9,17 @@ import {
 function Navigation() {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/projects">
-            <IoPaperPlaneOutline className="icon" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/team">
-            <IoPeopleOutline className="icon" />
-          </Link>
-        </li>
-        <li>
-          <Link to="/account">
-            <IoPersonOutline className="icon" />
-          </Link>
-        </li>
-      </ul>
+      <div>
+        <Link to="/projects" activeClassName="active">
+          <IoPaperPlaneOutline className="icon" />
+        </Link>
+        <Link to="/team">
+          <IoPeopleOutline className="icon" />
+        </Link>
+      </div>
+      <Link to="/account">
+        <IoPersonOutline className="icon" />
+      </Link>
     </nav>
   );
 }
