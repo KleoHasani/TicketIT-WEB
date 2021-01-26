@@ -423,34 +423,18 @@ a {
 }
 
 .ticket-item {
-  display: grid;
-  grid-template-columns: 80% 20%;
   align-items: center;
   margin: 0.5em;
   padding: 0.5em;
   border-radius: 0.5em;
   cursor: default;
+  font-size: 0.8em;
+  text-align: center;
 }
 
 .ticket-item:hover {
   background: var(--secondary);
   color: var(--onSecondary);
-}
-
-.ticket-item > p {
-  width: 80% !important;
-}
-.ticket-item > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 20% !important;
-}
-
-.ticket-item > div > .button {
-  min-width: 2em !important;
-  margin: 0em !important;
-  margin-left: 0.5em !important;
 }
 
 .overlay {

@@ -118,7 +118,6 @@ function Project() {
   const handleToggleNewTicket = (e) => {
     e.preventDefault();
     setShowOverlay(!showOverlay);
-    //createNewTicket();
   };
 
   // Handle Create new ticket
