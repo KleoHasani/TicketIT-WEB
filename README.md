@@ -44,5 +44,3 @@ v1.0.0
 Kleo Hasani
 
 ### Notes
-
-**Thank You**
