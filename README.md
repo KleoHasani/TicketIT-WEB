@@ -5,35 +5,39 @@
 
 Clone:
 
-```
+```git
 git clone https://github.com/KleoHasani/TicketIT-WEB.git
 ```
 
 Install dependencies:
 
-```
+```npm
 npm install
 ```
 
 Run:
 
-```
+```npm
 npm start
 ```
 
-## Required
+### Required
 
-Node v15.2.0
+- Node v15.2.0 or above
 
-NPM 6.14.11
+- NPM 6.14.11 or above
 
-## Build With
+### Build With
 
 React
 
+```npm
+npm run build
+```
+
 ## Version
 
-1.0.0
+v1.0.0
 
 ## Authors
 
