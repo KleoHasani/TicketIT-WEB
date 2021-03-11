@@ -245,13 +245,30 @@ a {
   width: 1.5em;
   height: 1.5em;
   color: var(--onPrimary);
+  position: relative;
 }
 
 .icon-sm {
-  width: 1.2em;
-  height: 1.2em;
-  margin: 0em 0.5em;
+  width: 1em;
+  height: 1em;
   color: var(--onPrimary);
+}
+
+.icon > p {
+  font-size: 0.8em;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  text-align: center;
+  padding: 0em;
+  background: var(--danger);
+  color: var(--onDanger);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: -10px;
+  margin-right: -10px;
 }
 
 .view {
@@ -508,6 +525,63 @@ a {
   min-width: 130px;
 }
 
+.result-list {
+  list-style: none;
+}
+
+.result-item {
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+  padding: 0.5em;
+  align-items: center;
+  background: var(--primary);
+  border-radius: 1em;
+  color: var(--onPrimary);
+}
+
+.result-item > p {
+  width: 100%;
+  text-align: center;
+}
+
+.result-item > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.result-item > div > button {
+  margin: 0.5em;
+}
+
+.request-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5em;
+  padding: 0.2em 0.5em;
+  align-items: center;
+  background: var(--primary);
+  border-radius: 1em;
+  color: var(--onPrimary);
+}
+
+.request-item > div {
+  display: flex;
+  flex-direction: row;
+  width: 25%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.request-item > div > button {
+  min-width: auto;
+  min-height: auto;
+  width: 2em;
+  height: 2em;
+}
+
 @media only screen and (max-width: 1024px) {
   .container {
     grid-template-columns: repeat(2, auto);
@@ -548,6 +622,10 @@ a {
   .header-children {
     display: block;
     width: 100%;
+  }
+
+  .result-item {
+    flex-direction: column;
   }
 }
 

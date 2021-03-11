@@ -6,7 +6,7 @@ import {
   IoPersonOutline,
 } from "react-icons/io5/index";
 
-function Navigation() {
+function Navigation(props) {
   return (
     <nav>
       <div>
@@ -14,7 +14,10 @@ function Navigation() {
           <IoPaperPlaneOutline className="icon" />
         </Link>
         <Link to="/team">
-          <IoPeopleOutline className="icon" />
+          <div className="icon">
+            <IoPeopleOutline className="icon" />
+            {props.requestsCount > 0 ? <p>{props.requestsCount}</p> : null}
+          </div>
         </Link>
       </div>
       <Link to="/account">
