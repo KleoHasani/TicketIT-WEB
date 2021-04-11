@@ -13,69 +13,76 @@ function Team(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios({
-      method: "get",
-      baseURL: "http://localhost:8000/api",
-      url: `/user/search/${e.target.search.value}`,
-      headers: { authorization: sessionStorage.getItem("authorization") },
-    })
-      .then((response) => {
-        if (response.data.desc === "PASS") {
-          if (response.data.data.length > 0) setSearch(response.data.data);
-          else alert("No users found with that first name!");
-        }
+    if (e.target.value !== "")
+      axios({
+        method: "get",
+        baseURL: "http://localhost:8000/api",
+        url: `/user/search/${e.target.value}`,
+        headers: { authorization: sessionStorage.getItem("authorization") },
       })
-      .catch((err) => {
-        if (err.toString() === "Error: Request failed with status code 401") {
-          const shouldRefresh = refresh();
-          if (shouldRefresh) return handleSubmit(e);
-        }
-      });
+        .then((response) => {
+          if (response.data.desc === "PASS") {
+            if (response.data.data.length > 0) setSearch(response.data.data);
+            else setSearch([]);
+          }
+        })
+        .catch((err) => {
+          if (err.toString() === "Error: Request failed with status code 401") {
+            const shouldRefresh = refresh();
+            if (shouldRefresh) return handleSubmit(e);
+          }
+        });
+    else setSearch([]);
   };
 
   return (
     <div className="view">
       <ViewHeader title="Team">
-        <form
-          className="new-project"
-          autoComplete="off"
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <input
-            type="text"
-            name="search"
-            id="search"
-            required
-            placeholder="Search"
-          />
-          <button className="button ok" type="submit">
-            Search
-          </button>
-        </form>
+        <input
+          className="search-box"
+          type="text"
+          required
+          placeholder="Search"
+          onChange={(e) => handleSubmit(e)}
+        />
       </ViewHeader>
-      {props.requests.length > 0 ? <h2>Requests:</h2> : null}
-      <ul className="result-list">
-        {props.requests.map((request, index) => (
-          <li key={index}>
-            <RequestItem
-              user={request}
-              handleAccept={props.handleAccept}
-              handleReject={props.handleReject}
-            />
-          </li>
-        ))}
-      </ul>
+      <h2>Requests:</h2>
+      {props.requests.length > 0 ? (
+        <ul className="result-list">
+          {props.requests.map((request, index) => (
+            <li key={index}>
+              <RequestItem
+                user={request}
+                handleAccept={props.handleAccept}
+                handleReject={props.handleReject}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h3 className="container">No new requests!</h3>
+      )}
 
-      {props.team.length > 0 ? <h2>Team:</h2> : null}
-      <ul className="result-list">
-        {props.team.map((teamate, index) => (
-          <li key={index}>
-            <TeamItem user={teamate} />
-          </li>
-        ))}
-      </ul>
+      <hr />
+      <h2>Team Members:</h2>
+      {props.team.length > 0 ? (
+        <ul className="result-list">
+          {props.team.map((teamate, index) => (
+            <li key={index}>
+              <TeamItem user={teamate} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <h3 className="container">No team members!</h3>
+      )}
 
-      {search.length > 0 ? <h2>Search:</h2> : null}
+      {search.length > 0 ? (
+        <div>
+          <hr />
+          <h2>Search:</h2>
+        </div>
+      ) : null}
       <ul className="result-list">
         {search.map((user, index) => (
           <li key={index}>
