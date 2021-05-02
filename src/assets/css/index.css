@@ -656,6 +656,7 @@ a {
 
   .overlay > div {
     width: 80%;
+    height: auto;
   }
 
   nav {
@@ -671,7 +672,7 @@ a {
 
   nav > div {
     display: flex;
-    width: 200%;
+    width: 100%;
     height: 100%;
   }
 
