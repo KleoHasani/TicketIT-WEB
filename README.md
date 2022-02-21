@@ -1,5 +1,21 @@
+<p align="center">
+	<img src="./docs/screenshots/logo.png">
+</p>
+
 # TicketIT-WEB
 (WEB) ReactJS front-end for TicketIT app.
+
+---
+
+<p align="center">
+	<img src="./docs/screenshots/Screenshot1.png">
+	<img src="./docs/screenshots/Screenshot2.png">
+	<img src="./docs/screenshots/Screenshot3.png">
+	<img src="./docs/screenshots/Screenshot4.png">
+	<img src="./docs/screenshots/Screenshot5.png">
+</p>
+
+---
 
 ## Getting Started
 
