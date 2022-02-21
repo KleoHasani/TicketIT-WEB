@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="./docs/screenshots/logo.png">
+	<img src="./docs/screenshots/logo.png" width="200px" height="200px">
 </p>
 
 # TicketIT-WEB
